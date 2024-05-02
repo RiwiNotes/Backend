@@ -17,8 +17,8 @@ namespace Backend.Data
                 base.OnModelCreating(modelBuilder);
 
                 modelBuilder.Entity<Nota>()
-                    .HasOne(n => n.categoria) // Corrige la propiedad de navegación aquí
-                    .WithMany(c => c.notas) // Corrige la propiedad de navegación aquí
+                    .HasOne(n => n.categoria) 
+                    .WithMany(c => c.notas) 
                     .HasForeignKey(n => n.categoria_id);
             }
 
