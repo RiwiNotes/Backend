@@ -25,6 +25,14 @@ namespace Backend.Controllers
             return await _context.Categorias.ToListAsync();
         }
 
-        
+        //crear una nueva categoria
+
+        [HttpPost]
+        public async Task<ActionResult<Categoria>> PostCategoria(Categoria categoria)
+        {
+            _context.Categorias.Add(categoria);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetCategoria", new { id = categoria.id}, categoria);
+        }
     }
 }
