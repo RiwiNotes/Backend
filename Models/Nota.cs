@@ -5,12 +5,11 @@ namespace Backend.Models
         public int id { get; set; }
         public string titulo { get; set; }
         public string contenido { get; set; }
-        public DateOnly fecha { get; set; }
+        public DateTime fecha { get; set; } 
 
-        public int categoria_id {get; set;}
-        public Categoria categoria { get; set; }
-        
+        public string categoria {get; set;}
         
     }
 }
+
 

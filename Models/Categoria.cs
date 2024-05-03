@@ -4,6 +4,6 @@ namespace Backend.Models
     {
         public int id { get; set; }
         public string nombre_categoria { get; set; }
-        public List<Nota> notas { get; set; } 
+    
     }
 }
