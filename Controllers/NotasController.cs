@@ -66,12 +66,21 @@ namespace Backend.Controllers
         }
 
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateNota(int Id ,Nota nota){
+        
+        
+        [ HttpPut("{id}")]
+        public async Task<IActionResult> PutNote(int id, Nota nota)
+        {
+            if (id != nota.id)
+            {
+                return BadRequest();
+            }
 
-            _context.Notas.Update(nota);
+            _context.Entry(nota).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return Ok();
+
+            return NoContent();
         }
+        
 }
 }
