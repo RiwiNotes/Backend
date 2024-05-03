@@ -25,6 +25,42 @@ namespace Backend.Controllers
             return await _context.Notas.ToListAsync();
         }
 
+        //detalles en el controllador de notas
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Nota>> GetDetalles(int id)
+        {
+            var nota = await _context.Notas.FindAsync(id);
+
+            if (nota == null)
+            {
+                return NotFound();
+            }
+            return nota;
+        }
+
+        //crear una nueva nota 
+
+        [HttpPost]
+        public async Task<ActionResult<Nota>> PostNota(Nota nota)
+        {
+            _context.Notas.Add(nota);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetNotas", new { id = nota.id}, nota);
+        }
         
-    }
+        //eliminar nota
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Nota>> DeleteNota(int id)
+        {
+            var nota  = await _context.Notas.FindAsync(id);
+            if( nota == null)
+            {
+                return NotFound();
+            }
+            _context.Notas.Remove(nota);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+}
 }
