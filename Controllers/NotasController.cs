@@ -47,6 +47,8 @@ namespace Backend.Controllers
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetNotas", new { id = nota.id}, nota);
         }
+
+
         
         //eliminar nota
         [HttpDelete("{id}")]
@@ -61,6 +63,15 @@ namespace Backend.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateNota(int Id ,Nota nota){
+
+            _context.Notas.Update(nota);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
 }
 }
